@@ -178,10 +178,14 @@ def predict(
         df["provincia"] = df["provincia"].apply(normalizar_texto)
         df["perito"] = df["perito"].apply(normalizar_texto)
         df["compania"] = df["compania"].apply(normalizar_texto)
+        df["videoperitacion"] = df["videoperitacion"].apply(normalizar_texto)
 
         df["provincia"] = preprocesador["provincia"].transform(df["provincia"])
         df["perito"] = preprocesador["perito"].transform(df["perito"])
         df["compania"] = preprocesador["compania"].transform(df["compania"])
+        df["videoperitacion"] = preprocesador["videoperitacion"].transform(df["videoperitacion"])
+
+        df = df.drop(columns=["fecha_entrada"])
 
         pred = modelo.predict(df)[0]
 
