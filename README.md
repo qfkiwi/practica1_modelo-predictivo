@@ -8,6 +8,9 @@ API desarrollada con FastAPI para predecir el tiempo de resolución de expedient
 ### Endpoint
 POST /predict
 
+
 ## Ejecución local
 
 uvicorn api:app --reload
+
+## La pagina se puede ejecutar en railway
