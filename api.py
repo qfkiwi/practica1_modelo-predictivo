@@ -25,6 +25,24 @@ def normalizar_texto(texto):
     return texto_sin_acentos.lower()
 
 
+def safe_transform(encoder, values):
+    """Transforma valores gestionando coincidencias de texto normalizado."""
+    clases = list(encoder.classes_)
+    clases_normalizadas = [normalizar_texto(c) for c in clases]
+    result = []
+    for valor in values:
+        if valor in clases:
+            result.append(encoder.transform([valor])[0])
+            continue
+        valor_norm = normalizar_texto(valor)
+        if valor_norm in clases_normalizadas:
+            clase_original = clases[clases_normalizadas.index(valor_norm)]
+            result.append(encoder.transform([clase_original])[0])
+        else:
+            result.append(encoder.transform([clases[0]])[0])
+    return result
+
+
 @app.get("/", response_class=HTMLResponse)
 def formulario():
     return """
@@ -180,10 +198,10 @@ def predict(
         df["compania"] = df["compania"].apply(normalizar_texto)
         df["videoperitacion"] = df["videoperitacion"].apply(normalizar_texto)
 
-        df["provincia"] = preprocesador["provincia"].transform(df["provincia"])
-        df["perito"] = preprocesador["perito"].transform(df["perito"])
-        df["compania"] = preprocesador["compania"].transform(df["compania"])
-        df["videoperitacion"] = preprocesador["videoperitacion"].transform(df["videoperitacion"])
+        df["provincia"] = safe_transform(preprocesador["provincia"], df["provincia"])
+        df["perito"] = safe_transform(preprocesador["perito"], df["perito"])
+        df["compania"] = safe_transform(preprocesador["compania"], df["compania"])
+        df["videoperitacion"] = safe_transform(preprocesador["videoperitacion"], df["videoperitacion"])
 
         df = df.drop(columns=["fecha_entrada"])
 
