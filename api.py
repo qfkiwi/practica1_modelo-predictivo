@@ -119,7 +119,7 @@ def formulario():
                     </div>
                     <div class="form-group">
                         <label>Fecha entrada</label>
-                        <input type="date" name="fecha_entrada" required>
+                        <input type="date" name="fecha_entrada" placeholder="2025-05-05" required>
                     </div>
                     <div class="form-group">
                         <label>Perito</label>
