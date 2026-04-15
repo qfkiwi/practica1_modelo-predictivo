@@ -326,9 +326,9 @@ def predict(
             }}
         </style>
         <script>
-            window.onload = function() {
+            window.onload = function() {{
                 window.scrollTo(0, 0);
-            };
+            }};
         </script>
     </head>
     <body>
