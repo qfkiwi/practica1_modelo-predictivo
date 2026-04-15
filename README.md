@@ -8,16 +8,6 @@ API desarrollada con FastAPI para predecir el tiempo de resolución de expedient
 ### Endpoint
 POST /predict
 
-### Ejemplo JSON
-
-{
-  "compania": "Allianz",
-  "videoperitacion": "No",
-  "fecha_entrada": "2024-09-08",
-  "perito": "Perito B",
-  "provincia": "Sevilla"
-}
-
 ## Ejecución local
 
 uvicorn api:app --reload
