@@ -325,6 +325,11 @@ def predict(
                 color: #764ba2;
             }}
         </style>
+        <script>
+            window.onload = function() {
+                window.scrollTo(0, 0);
+            };
+        </script>
     </head>
     <body>
         <div class="container">
