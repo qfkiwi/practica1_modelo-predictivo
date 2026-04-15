@@ -243,13 +243,20 @@ def predict(
                 text-align: center;
                 font-size: 28px;
             }}
+            .result-group {{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                margin-bottom: 30px;
+            }}
             .result-box {{
                 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 color: white;
                 padding: 30px;
                 border-radius: 10px;
                 text-align: center;
-                margin-bottom: 30px;
+                flex: 1 1 300px;
+                min-width: 250px;
             }}
             .result-box h3 {{
                 font-size: 18px;
@@ -268,11 +275,19 @@ def predict(
             .mae-info {{
                 background: #f0f4ff;
                 border-left: 4px solid #667eea;
-                padding: 15px;
-                border-radius: 5px;
-                margin-bottom: 30px;
+                padding: 30px;
+                border-radius: 10px;
                 color: #555;
                 font-size: 14px;
+                flex: 1 1 250px;
+                min-width: 250px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }}
+            .mae-info strong {{
+                display: block;
+                margin-bottom: 10px;
             }}
             .form-group {{
                 margin-bottom: 14px;
@@ -338,16 +353,6 @@ def predict(
     <body>
         <div class="container">
             <h2>📊 Resultado de la Predicción</h2>
-            
-            <div class="result-box">
-                <h3>Duración estimada:</h3>
-                <div class="result-value">{round(pred, 2)}</div>
-                <div class="result-label">días</div>
-            </div>
-
-            <div class="mae-info">
-                ℹ️ <strong>Precisión del modelo:</strong> Error promedio de ±{MAE_MODELO} días
-            </div>
 
             <h3 style="color: #333; margin-bottom: 20px; margin-top: 20px;">Ajusta los parámetros y prueba de nuevo:</h3>
             <form action="/predict" method="post">
@@ -385,6 +390,20 @@ def predict(
                 </div>
                 <button type="submit">🔄 Nueva predicción</button>
             </form>
+
+            <div class="result-group" style="margin-top: 30px;">
+                <div class="result-box">
+                    <h3>Duración estimada:</h3>
+                    <div class="result-value">{round(pred, 2)}</div>
+                    <div class="result-label">días</div>
+                </div>
+
+                <div class="mae-info">
+                    ℹ️ <strong>Precisión del modelo:</strong>
+                    <div>Error promedio de ±{MAE_MODELO} días</div>
+                </div>
+            </div>
+
             <a href="/" class="back-link">← Volver al inicio</a>
         </div>
     </body>
