@@ -324,12 +324,16 @@ def predict(
             .back-link:hover {{
                 color: #764ba2;
             }}
+            .container {{
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+                padding: 40px;
+                max-width: 600px;
+                width: 100%;
+                margin-top: 40px;
+            }}
         </style>
-        <script>
-            window.onload = function() {
-                window.scrollTo(0, 0);
-            };
-        </script>
     </head>
     <body>
         <div class="container">
