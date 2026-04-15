@@ -111,11 +111,11 @@ def formulario():
                 <form action="/predict" method="post">
                     <div class="form-group">
                         <label>Compañía</label>
-                        <input type="text" name="compania" placeholder="Ej: Allianz" required>
+                        <input type="text" name="compania" placeholder="Mapfre" required>
                     </div>
                     <div class="form-group">
                         <label>Videoperitación</label>
-                        <input type="text" name="videoperitacion" placeholder="Ej: SI" required>
+                        <input type="text" name="videoperitacion" placeholder="No" required>
                     </div>
                     <div class="form-group">
                         <label>Fecha entrada</label>
@@ -123,23 +123,23 @@ def formulario():
                     </div>
                     <div class="form-group">
                         <label>Perito</label>
-                        <input type="text" name="perito" placeholder="Ej: Juan García" required>
+                        <input type="text" name="perito" placeholder="Perito B" required>
                     </div>
                     <div class="form-group">
                         <label>Provincia</label>
-                        <input type="text" name="provincia" placeholder="Ej: Madrid" required>
+                        <input type="text" name="provincia" placeholder="Zaragoza" required>
                     </div>
                     <div class="form-group">
                         <label>Honorario gabinete (€)</label>
-                        <input type="number" name="honorario_gabinete" placeholder="Ej: 500" step="0.01" required>
+                        <input type="number" name="honorario_gabinete" placeholder="32" step="0.01" required>
                     </div>
                     <div class="form-group">
                         <label>Honorario perito (€)</label>
-                        <input type="number" name="honorario_perito" placeholder="Ej: 300" step="0.01" required>
+                        <input type="number" name="honorario_perito" placeholder="22" step="0.01" required>
                     </div>
                     <div class="form-group">
                         <label>Tasación origen (€)</label>
-                        <input type="number" name="tasacion_origen" placeholder="Ej: 15000" step="0.01" required>
+                        <input type="number" name="tasacion_origen" placeholder="3972" step="0.01" required>
                     </div>
                     <button type="submit">Predecir duración</button>
                 </form>
