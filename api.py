@@ -4,14 +4,25 @@ import joblib
 import pandas as pd
 import os
 import uvicorn
+import unicodedata
 
-MAE_MODELO = 0.8742
+MAE_MODELO = 0.874
 
 app = FastAPI()
 
 # ✅ CARGA SOLO UNA VEZ
 modelo = joblib.load("modelo.pkl")
 preprocesador = joblib.load("preprocesador.pkl")
+
+def normalizar_texto(texto):
+    """Normaliza el texto removiendo acentos y convirtiendo a minúsculas."""
+    if not isinstance(texto, str):
+        return texto
+    # Normalizar a forma NFD (descomponer caracteres)
+    texto_normalizado = unicodedata.normalize('NFD', texto)
+    # Remover caracteres de combinación (acentos)
+    texto_sin_acentos = ''.join(c for c in texto_normalizado if unicodedata.category(c) != 'Mn')
+    return texto_sin_acentos.lower()
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -162,6 +173,11 @@ def predict(
         df["fecha_entrada"] = pd.to_datetime(df["fecha_entrada"])
         df["mes"] = df["fecha_entrada"].dt.month
         df["dia_semana"] = df["fecha_entrada"].dt.dayofweek
+
+        # Normalizar texto para ignorar acentos y mayúsculas/minúsculas
+        df["provincia"] = df["provincia"].apply(normalizar_texto)
+        df["perito"] = df["perito"].apply(normalizar_texto)
+        df["compania"] = df["compania"].apply(normalizar_texto)
 
         df["provincia"] = preprocesador["provincia"].transform(df["provincia"])
         df["perito"] = preprocesador["perito"].transform(df["perito"])
