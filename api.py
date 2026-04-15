@@ -35,7 +35,7 @@ def formulario():
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    padding: 20px;
+                    padding: 40px 20px;
                 }
                 .container {
                     background: white;
@@ -188,7 +188,7 @@ def predict(
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: 20px;
+                padding: 40px 20px;
             }}
             .container {{
                 background: white;
@@ -363,7 +363,7 @@ def predict(
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        padding: 20px;
+                        padding: 40px 20px;
                     }}
                     .container {{
                         background: white;
