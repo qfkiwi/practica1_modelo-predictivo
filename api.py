@@ -204,6 +204,7 @@ def predict(
         df["videoperitacion"] = safe_transform(preprocesador["videoperitacion"], df["videoperitacion"])
 
         df = df.drop(columns=["fecha_entrada"])
+        df = df[["provincia", "perito", "compania", "videoperitacion", "mes", "dia_semana", "honorario_gabinete", "honorario_perito", "tasacion_origen"]]
 
         pred = modelo.predict(df)[0]
 
